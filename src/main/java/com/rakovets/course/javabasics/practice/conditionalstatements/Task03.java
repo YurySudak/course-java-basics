@@ -23,5 +23,14 @@ public class Task03 {
         //TODO
         // Код, решающий задачу пишем ниже, при этом используяся переменные объявленные выше (их можно изменять)
         // Для проверки решения необходимо запустить @Test для данного class (в директории test)
+        if (healthPointPercentage > 100 || healthPointPercentage <0)
+            System.out.println("Something went wrong");
+        else {
+            String color = "RED";
+            if (healthPointPercentage >= 75) color = "GREEN";
+            else if (healthPointPercentage >= 50) color = "YELLOW";
+            else if (healthPointPercentage >= 25) color = "ORANGE";
+            System.out.println(color);
+        }
     }
 }
