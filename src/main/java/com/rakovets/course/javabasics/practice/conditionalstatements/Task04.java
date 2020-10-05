@@ -21,5 +21,30 @@ public class Task04 {
         //TODO
         // Код, решающий задачу пишем ниже, при этом используяся переменные объявленные выше (их можно изменять)
         // Для проверки решения необходимо запустить @Test для данного class (в директории test)
+        String weekDay = "Are you hucker?";
+        switch (weekdayNumber) {
+            case 1:
+                weekDay = "monday";
+                break;
+            case 2:
+                weekDay = "tuesday";
+                break;
+            case 3:
+                weekDay = "wednesday";
+                break;
+            case 4:
+                weekDay = "thursday";
+                break;
+            case 5:
+                weekDay = "friday";
+                break;
+            case 6:
+                weekDay = "saturday";
+                break;
+            case 7:
+                weekDay = "sunday";
+                break;
+        }
+        System.out.println(weekDay);
     }
 }
