@@ -22,5 +22,14 @@ public class Task02 {
         //TODO
         // Код, решающий задачу пишем ниже, при этом используяся переменные объявленные выше (их можно изменять)
         // Для проверки решения необходимо запустить @Test для данного class (в директории test)
+        if (hour >23 || hour <0)
+                System.out.println("Are you cyper-partizan?");
+        else {
+            String str = "night";
+            if (hour >= 18) str = "evening";
+            else if (hour >= 12) str = "day";
+            else if (hour >= 6) str = "morning";
+            System.out.println("Good " + str);
+        }
     }
 }
