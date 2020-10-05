@@ -28,5 +28,22 @@ public class Task10 {
         //TODO
         // Код, решающий задачу пишем ниже, при этом используяся переменные объявленные выше (их можно изменять)
         // Для проверки решения необходимо запустить @Test для данного class (в директории test)
+        String numberOfGasStation = "1";
+        int min = firstFuelReserves;
+        if (secondFuelReserves <= min) {
+            if (secondFuelReserves == min)
+                numberOfGasStation = numberOfGasStation + " 2";
+            else {
+                min = secondFuelReserves;
+                numberOfGasStation = "2";
+            }
+        }
+        if (thirdFuelReserves <= min) {
+            if (thirdFuelReserves == min)
+                numberOfGasStation = numberOfGasStation + " 3";
+            else
+                numberOfGasStation = "3";
+        }
+        System.out.println(numberOfGasStation);
     }
 }
