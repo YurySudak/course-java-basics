@@ -27,6 +27,14 @@ public class Task02 extends StandardInputTask {
         //TODO
         // Код, решающий задачу пишем ниже, при этом используя параметры метода
         // Для проверки решения необходимо запустить @Test для данного class (в директории test)
-        return null;
+        String greet = null;
+        if (hour >=0 && hour <=23) {
+            greet = "night";
+            if (hour >= 18) greet = "evening";
+            else if (hour >= 12) greet = "day";
+            else if (hour >= 6) greet = "morning";
+            greet = "Good " + greet;
+        }
+        return greet;
     }
 }
