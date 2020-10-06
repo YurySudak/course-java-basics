@@ -1,5 +1,7 @@
 package com.rakovets.course.javabasics.practice.loops;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Scanner;
 
 /**
@@ -11,7 +13,7 @@ import java.util.Scanner;
  * @param depositTerm          продолжительность вклада (в годах)
  * @author Dmitry Rakovets
  * @version 1.0
- * @return прибыль округленную математически
+ * @return прибыль округленную математически до сотых
  */
 public class Task03 {
     public static void main(String[] args) {
@@ -26,5 +28,9 @@ public class Task03 {
         //TODO
         // Код, решающий задачу пишем ниже, при этом используяся переменные объявленные выше (их можно изменять)
         // Для проверки решения необходимо запустить @Test для данного class (в директории test)
+        for (double year = 1; year <= depositTerm; year++) {
+            depositAmount += depositAmount*annualDepositPercent/100;
+        }
+        System.out.println(new BigDecimal(depositAmount).setScale(2, RoundingMode.HALF_EVEN).doubleValue());
     }
 }
