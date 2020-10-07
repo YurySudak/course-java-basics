@@ -52,5 +52,34 @@ public class Task12 {
         //TODO
         // Код, решающий задачу пишем ниже, при этом используяся переменные объявленные выше (их можно изменять)
         // Для проверки решения необходимо запустить @Test для данного class (в директории test)
+        String chineseSign = "";
+        String zodiacSign = "";
+        if ((year - 1900) % 12 == 0) chineseSign = "Rat";
+        if ((year - 1901) % 12 == 0) chineseSign = "Ox";
+        if ((year - 1902) % 12 == 0) chineseSign = "Tiger";
+        if ((year - 1903) % 12 == 0) chineseSign = "Rabbit";
+        if ((year - 1904) % 12 == 0) chineseSign = "Dragon";
+        if ((year - 1905) % 12 == 0) chineseSign = "Snake";
+        if ((year - 1906) % 12 == 0) chineseSign = "Horse";
+        if ((year - 1907) % 12 == 0) chineseSign = "Ram";
+        if ((year - 1908) % 12 == 0) chineseSign = "Monkey";
+        if ((year - 1909) % 12 == 0) chineseSign = "Rooster";
+        if ((year - 1910) % 12 == 0) chineseSign = "Dog";
+        if ((year - 1911) % 12 == 0) chineseSign = "Pig";
+
+        if ((month == 1 && day <= 20) || (month == 12 && day >=22)) zodiacSign = "Goat";
+        if ((month == 2 && day <= 19) || (month == 1 && day >=21)) zodiacSign = "Water-bearer";
+        if ((month == 3 && day <= 20) || (month == 2 && day >=20)) zodiacSign = "Fish";
+        if ((month == 4 && day <= 20) || (month == 3 && day >=21)) zodiacSign = "Ram";
+        if ((month == 5 && day <= 20) || (month == 4 && day >=21)) zodiacSign = "Bull";
+        if ((month == 6 && day <= 21) || (month == 5 && day >=21)) zodiacSign = "Twins";
+        if ((month == 7 && day <= 22) || (month == 6 && day >=22)) zodiacSign = "Crab";
+        if ((month == 8 && day <= 22) || (month == 7 && day >=23)) zodiacSign = "Lion";
+        if ((month == 9 && day <= 21) || (month == 8 && day >=23)) zodiacSign = "Maiden";
+        if ((month == 10 && day <= 22) || (month == 9 && day >=22)) zodiacSign = "Scales";
+        if ((month == 11 && day <= 22) || (month == 10 && day >=23)) zodiacSign = "Scorpion";
+        if ((month == 12 && day <= 21) || (month == 11 && day >=23)) zodiacSign = "Archer";
+        System.out.println("Zodiac Sign: " + zodiacSign + ". Chinese Zodiac: " + chineseSign);
+
     }
 }
