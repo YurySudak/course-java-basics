@@ -23,5 +23,18 @@ public class Task06 {
         //TODO
         // Код, решающий задачу пишем ниже, при этом используяся переменные объявленные выше (их можно изменять)
         // Для проверки решения необходимо запустить @Test для данного class (в директории test)
+        String result = "";
+        int three = 0;
+        boolean minus = amount < 0;
+        amount = Math.abs(amount);
+        do {
+            three = (int) (amount%1000);
+            amount = amount / 1000;
+            result = three + " " + result;
+        } while (amount > 0);
+        if (minus) {
+            result = "-" + result;
+        }
+        System.out.println(result);
     }
 }
