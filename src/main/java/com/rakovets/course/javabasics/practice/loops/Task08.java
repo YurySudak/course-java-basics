@@ -28,5 +28,16 @@ public class Task08 {
         //TODO
         // Код, решающий задачу пишем ниже, при этом используяся переменные объявленные выше (их можно изменять)
         // Для проверки решения необходимо запустить @Test для данного class (в директории test)
+        double item = startNumberItems;
+        double newItem = item;
+        double price = startPriceAllItems;
+        double newPrice = price;
+        for (int i = 1; i <= sizeTotalPrice; i++) {
+            System.out.println((int)item + " - " + price);
+            newItem += differentialNumberItems;
+            newPrice = newItem / item * price;
+            item = newItem;
+            price = newPrice;
+        }
     }
 }
