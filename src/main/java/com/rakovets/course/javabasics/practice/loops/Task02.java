@@ -27,12 +27,13 @@ public class Task02 {
         // Для проверки решения необходимо запустить @Test для данного class (в директории test)
         String result = "";
         if (headerRowEnable) {
-            result = "\n";
+            result = System.lineSeparator() + "1";
             rows--;
         }
-        for (int i = 1; i <= rows; i++) {
-            result += i + "\n";
+        else result = "1";
+        for (int i = 2; i <= rows; i++) {
+            result += System.lineSeparator() +  i;
         }
-        System.out.println(result);
+        System.out.print(result);
     }
 }
