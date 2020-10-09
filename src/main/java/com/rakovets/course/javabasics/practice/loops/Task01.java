@@ -22,10 +22,10 @@ public class Task01 {
         //TODO
         // Код, решающий задачу пишем ниже, при этом используяся переменные объявленные выше (их можно изменять)
         // Для проверки решения необходимо запустить @Test для данного class (в директории test)
-        String numbersOfRows = "";
-        for (int i = 1; i <= rows; i++) {
-            numbersOfRows = numbersOfRows + i + "\n";
+        String numbersOfRows = "1";
+        for (int i = 2; i <= rows; i++) {
+            numbersOfRows += System.lineSeparator() + i;
         }
-        System.out.println(numbersOfRows);
+        System.out.print(numbersOfRows);
     }
 }
