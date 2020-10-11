@@ -2,6 +2,9 @@ package com.rakovets.course.javabasics.practice.arrays;
 
 import com.rakovets.course.javabasics.util.StandardInputTask;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 /**
  * Разработать программу для электронного дневника:
  * которая работает с отметками по всем предметам.
@@ -32,7 +35,15 @@ public class Task02 extends StandardInputTask {
         //TODO
         // Код, решающий задачу пишем ниже, при этом используя параметры метода
         // Для проверки решения необходимо запустить @Test для данного class (в директории test)
-        return 0.0;
+        int sum = 0;
+        int num = 0;
+        for (int[] marksSubj : marks) {
+            for (int mark: marksSubj) {
+                sum += mark;
+                num++;
+            }
+        }
+        return new BigDecimal((double) sum / num).setScale(2, RoundingMode.HALF_DOWN).doubleValue();
     }
 
     /**
@@ -45,8 +56,14 @@ public class Task02 extends StandardInputTask {
         //TODO
         // Код, решающий задачу пишем ниже, при этом используя параметры метода
         // Для проверки решения необходимо запустить @Test для данного class (в директории test)
-        return 0;
-    }
+        int min = marks[0][0];
+        for (int[] markSubj: marks) {
+            for (int mark : markSubj) {
+                if (min > mark) min = mark;
+                }
+            }
+        return min;
+        }
 
     /**
      * Возвращает максимальну отметку за весь период обучения.
@@ -58,7 +75,13 @@ public class Task02 extends StandardInputTask {
         //TODO
         // Код, решающий задачу пишем ниже, при этом используя параметры метода
         // Для проверки решения необходимо запустить @Test для данного class (в директории test)
-        return 0;
+        int max = marks[0][0];
+        for (int[] markSubj: marks) {
+            for (int mark : markSubj) {
+                if (max < mark) max = mark;
+                }
+            }
+        return max;
     }
 
     private static int[][] nextArray(int countDisciplines, int countSemesters) {
