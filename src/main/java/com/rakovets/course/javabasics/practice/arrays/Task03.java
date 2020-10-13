@@ -2,6 +2,9 @@ package com.rakovets.course.javabasics.practice.arrays;
 
 import com.rakovets.course.javabasics.util.StandardInputTask;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 /**
  * Разработать программу для электронного дневника:
  * которая работает с отметками по каждому предмету.
@@ -32,7 +35,15 @@ public class Task03 extends StandardInputTask {
         //TODO
         // Код, решающий задачу пишем ниже, при этом используя параметры метода
         // Для проверки решения необходимо запустить @Test для данного class (в директории test)
-        return null;
+        double[] result = new double[marks.length];
+        for (int i = 0; i < marks.length; i++) {
+            int sum = 0;
+            for (int mark: marks[i]) {
+                sum += mark;
+            }
+            result[i] = new BigDecimal((double) sum / marks[i].length).setScale(2, RoundingMode.HALF_DOWN).doubleValue();
+        }
+        return result;
     }
 
     /**
@@ -45,7 +56,15 @@ public class Task03 extends StandardInputTask {
         //TODO
         // Код, решающий задачу пишем ниже, при этом используя параметры метода
         // Для проверки решения необходимо запустить @Test для данного class (в директории test)
-        return null;
+        int[] result = new int[marks.length];
+        for (int i = 0; i < marks.length; i++) {
+            int min = marks[i][0];
+            for (int mark : marks[i]) {
+                if (min > mark) min = mark;
+            }
+            result[i] = min;
+        }
+        return result;
     }
 
     /**
@@ -58,7 +77,15 @@ public class Task03 extends StandardInputTask {
         //TODO
         // Код, решающий задачу пишем ниже, при этом используя параметры метода
         // Для проверки решения необходимо запустить @Test для данного class (в директории test)
-        return null;
+        int[] result = new int[marks.length];
+        for (int i = 0; i < marks.length; i++) {
+            int max = marks[i][0];
+            for (int mark : marks[i]) {
+                if (max < mark) max = mark;
+            }
+            result[i] = max;
+        }
+        return result;
     }
 
     private static int[][] nextArray(int countDisciplines, int countSemesters) {
