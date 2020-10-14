@@ -11,30 +11,33 @@ public class Time {
         this.minutes = minutesLeft / 60;
         this.seconds = minutesLeft % 60;
     }
+
     Time(int hours, int minutes, int seconds) {
         this.hours = hours;
         this.minutes = minutes;
         this.seconds = seconds;
     }
-    int getHours() {
+
+    public int getTotalSeconds() {
+        return this.hours * 3600 + this.minutes * 60 + this.seconds;
+    }
+
+    public int getHours() {
         return this.hours;
     }
-    void setHours(int hours) {
+    public void setHours(int hours) {
         this.hours = hours;
     }
-    int getMinutes() {
+    public int getMinutes() {
         return this.minutes;
     }
-    void setMinutes(int minutes) {
+    public void setMinutes(int minutes) {
         this.minutes = minutes;
     }
-    int getSeconds() {
+    public int getSeconds() {
         return this.seconds;
     }
-    void setSeconds(int seconds) {
+    public void setSeconds(int seconds) {
         this.seconds = seconds;
-    }
-    int getTotalSeconds() {
-        return this.hours * 3600 + this.minutes * 60 + this.seconds;
     }
 }

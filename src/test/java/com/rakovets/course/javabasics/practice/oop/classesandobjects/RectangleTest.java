@@ -2,8 +2,8 @@ package com.rakovets.course.javabasics.practice.oop.classesandobjects;
 
 public class RectangleTest {
     public static void main(String[] args) {
-        Point point1 = new Point(1, 2);
-        Point point2 = new Point(3, 4);
+        Point point1 = new Point(-1, -1);
+        Point point2 = new Point(1, 1);
         Rectangle rectangle = new Rectangle(point1, point2);
         System.out.println("Perimeter = " + rectangle.getPerimeter());
         System.out.println("Area = " + rectangle.getArea());

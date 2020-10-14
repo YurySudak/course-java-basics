@@ -8,24 +8,30 @@ public class Rectangle {
         this.firstPoint = firstPoint;
         this.secondPoint = secondPoint;
     }
-    Point getFirstPoint() {
+
+    public Point getFirstPoint() {
         return firstPoint;
     }
-    void setFirstPoint(Point point) {
+
+    public void setFirstPoint(Point point) {
         this.firstPoint = point;
     }
-    Point getSecondPoint() {
+
+    public Point getSecondPoint() {
         return secondPoint;
     }
-    void setSecondPoint(Point point) {
+
+    public void setSecondPoint(Point point) {
         this.secondPoint = point;
     }
-    int getPerimeter() {
+
+    public int getPerimeter() {
         int x = this.firstPoint.getX() - this.secondPoint.getX();
         int y = this.firstPoint.getY() - this.secondPoint.getY();
         return 2 * Math.abs(x) + 2 * Math.abs(y);
     }
-    double getArea() {
+
+    public double getArea() {
         int x = this.firstPoint.getX() - this.secondPoint.getX();
         int y = this.firstPoint.getY() - this.secondPoint.getY();
         return Math.abs(x * y);

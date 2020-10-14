@@ -8,19 +8,24 @@ public class Point {
         this.x = x;
         this.y = y;
     }
-    int getX() {
+
+    public int getX() {
         return this.x;
     }
-    void setX(int x) {
+
+    public void setX(int x) {
         this.x = x;
     }
-    int getY() {
+
+    public int getY() {
         return this.y;
     }
-    void setY(int y) {
+
+    public void setY(int y) {
         this.y = y;
     }
-    double distance(Point point) {
+
+    public double distance(Point point) {
         int x = point.getX() - this.x;
         int y = point.getY() - this.y;
         return Math.sqrt(x * x + y * y);
