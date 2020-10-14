@@ -56,19 +56,19 @@ WARNING: Протестировать работу конструкторов и
 
 *Fields*:
 
-- `firstPoint` - первая точка
-- `secondPoint` – вторая точка
+- `topLeftPoint` - левая верхняя точка
+- `bottomRightPoint` – правая нижняя точка
 
 *Constructors*:
 
-- `Rectangle(firstPoint, secondPoint)` – принимает два объекта типа `Point`
+- `Rectangle(topLeftPoint, bottomRightPoint)` – принимает два объекта типа `Point`
 
 *Methods*:
 
-- `getFirstPoint()`
-- `setFirstPoint()`
-- `getSecondPoint()`
-- `setSecondPoint()`
+- `getTopLeftPoint()`
+- `setTopLeftPoint()`
+- `getBottomRightPoint()`
+- `setBottomRightPoint()`
 - `getPerimeter()` – возвращает периметр прямоугольника
 - `getArea()` – возвращает площадь прямоугольника
 
