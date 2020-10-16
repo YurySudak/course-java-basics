@@ -2,6 +2,9 @@ package com.rakovets.course.javabasics.practice.arrays;
 
 import com.rakovets.course.javabasics.util.StandardInputTask;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+
 /**
  * Разработать программу для электронного дневника:
  * которая работает с отметками только по одному предмету
@@ -35,7 +38,7 @@ public class Task01 extends StandardInputTask {
         for (int mark: marks) {
             sum += mark;
         }
-        return sum / marks.length;
+        return new BigDecimal((double) sum / marks.length).setScale(2, RoundingMode.HALF_DOWN).doubleValue();
     }
 
     /**
