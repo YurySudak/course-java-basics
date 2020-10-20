@@ -1,4 +1,4 @@
-package com.rakovets.course.javabasics.practice.oop.inheritanceandpolymorphism;
+package com.rakovets.course.javabasics.practice.oop.inheritanceandpolymorphism.battle;
 
 public class Mag extends Hero {
 
@@ -9,8 +9,10 @@ public class Mag extends Hero {
     @Override
     public void attackEnemy(Enemy enemy) {
         System.out.print(super.getName() + " attacks " + enemy.getType() + "   ");
-        enemy.takeDamage(15);
-        System.out.println(enemy.getType() + " health = " + enemy.getHealth());
+        enemy.takeDamage(20);
+        if (enemy.isAlive())
+            System.out.println(enemy.getType() + " health = " + enemy.getHealth());
+        else System.out.println(enemy.getType() + " is dead");
     }
 
     public void cure(Hero hero) {

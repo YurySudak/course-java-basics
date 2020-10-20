@@ -1,5 +1,7 @@
 package com.rakovets.course.javabasics.practice.oop.inheritanceandpolymorphism;
 
+import com.rakovets.course.javabasics.practice.oop.inheritanceandpolymorphism.cats.*;
+
 public class CatTest {
     public static void main(String[] args) {
         Person person = new Person(100);

@@ -1,4 +1,4 @@
-package com.rakovets.course.javabasics.practice.oop.inheritanceandpolymorphism;
+package com.rakovets.course.javabasics.practice.oop.inheritanceandpolymorphism.battle;
 
 public class Skeleton extends Enemy {
     public Skeleton(int health) {
@@ -7,7 +7,7 @@ public class Skeleton extends Enemy {
 
     @Override
     public void takeDamage(int damage) {
-        health -= damage / 2;
+        health -= damage * 0.8;
     }
 
     public String getType() {
