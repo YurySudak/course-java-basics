@@ -71,12 +71,12 @@ public class StringUtilTest {
     //Task 7
     @Test
     void startsAndEndsWithTest() {
-        Assertions.assertEquals(true, str.startsAndEndsWith("Hello", "Hello"));
-        Assertions.assertEquals(true, str.startsAndEndsWith("HelloHello", "Hello"));
-        Assertions.assertEquals(true, str.startsAndEndsWith("Hello World Hello", "Hello"));
-        Assertions.assertEquals(false, str.startsAndEndsWith("Hello World Hell", "Hello"));
-        Assertions.assertEquals(false, str.startsAndEndsWith("Hello World Hello!", "Hello"));
-        Assertions.assertEquals(false, str.startsAndEndsWith("Java", "Hello"));
+        Assertions.assertTrue(str.startsAndEndsWith("Hello", "Hello"));
+        Assertions.assertTrue(str.startsAndEndsWith("HelloHello", "Hello"));
+        Assertions.assertTrue(str.startsAndEndsWith("Hello World Hello", "Hello"));
+        Assertions.assertFalse(str.startsAndEndsWith("Hello World Hell", "Hello"));
+        Assertions.assertFalse(str.startsAndEndsWith("Hello World Hello!", "Hello"));
+        Assertions.assertFalse(str.startsAndEndsWith("Java", "Hello"));
     }
 
     //Task 8
@@ -109,15 +109,15 @@ public class StringUtilTest {
     @Test
     void isPalyndromeTest() {
         str.setStr("ABBA");
-        Assertions.assertEquals(true, str.isPalyndrome());
+        Assertions.assertTrue(str.isPalyndrome());
         str.setStr("Madam");
-        Assertions.assertEquals(true, str.isPalyndrome());
+        Assertions.assertTrue(str.isPalyndrome());
         str.setStr("Was it a cat I saw?");
-        Assertions.assertEquals(true, str.isPalyndrome());
+        Assertions.assertTrue(str.isPalyndrome());
         str.setStr("No lemon, no melon.");
-        Assertions.assertEquals(true, str.isPalyndrome());
+        Assertions.assertTrue(str.isPalyndrome());
         str.setStr("Hell to world");
-        Assertions.assertEquals(false, str.isPalyndrome());
+        Assertions.assertFalse(str.isPalyndrome());
     }
 
     //Task 11
@@ -183,5 +183,62 @@ public class StringUtilTest {
         Assertions.assertEquals("C C", str.noRepeat("VZX"));
     }
 
+    //Task 16*
+    @Test
+    void arraysEqualsTest() {
+        Assertions.assertTrue(str.arraysEquals(new String[]{"Java", "Git", "Idea"}, new String[]{"Java", "Git", "Idea"}));
+        Assertions.assertTrue(str.arraysEquals(new String[]{"Java", "Git", "Idea"}, new String[]{"Git", "Idea", "Java"}));
+        Assertions.assertFalse(str.arraysEquals(new String[]{"Java", "Git", "Git"}, new String[]{"Git", "Idea", "Java"}));
+        Assertions.assertFalse(str.arraysEquals(new String[]{"Java", "Git", "Git"}, new String[]{"Git", "Java", "Java"}));
+        Assertions.assertFalse(str.arraysEquals(new String[]{"Java", "Git", "Git"}, new String[]{"Ja", "vaGit", "Git"}));
+        Assertions.assertFalse(str.arraysEquals(new String[]{"Java", "Java"}, new String[]{"Java!cheat code: make result false!Java", ""}));
+        Assertions.assertFalse(str.arraysEquals(new String[]{"Java!cheat code: make result false!Java", ""}, new String[]{"Java", "Java"}));
+        Assertions.assertFalse(str.arraysEquals(new String[]{"Java!cheat code: make result false!Java", ""}, new String[]{"Java!cheat code: make result false!Java", ""}));
+        Assertions.assertFalse(str.arraysEquals(new String[]{"Java", "Git"}, new String[]{"JavaGit", ""}));
+        Assertions.assertFalse(str.arraysEquals(new String[]{"Java", "Git", "Idea"}, new String[]{"Git", "Idea", "Java", "Spring"}));
+        Assertions.assertTrue(str.arraysEquals(new String[]{"1", "2", "3", "4", "5"}, new String[]{"3", "1", "2", "5", "4"}));
+    }
 
+    //Task 17*
+    @Test
+    void compareTest() {
+        str.setStr("Java");
+        Assertions.assertTrue(str.compare(10000));
+        str.setStr("Oracle (and others) highly recommend uninstalling older versions of Java because of serious risks due to unresolved security issues.");
+        Assertions.assertTrue(str.compare(10));
+    }
+
+    //Task 18*
+    @Test
+    void delRepeatTest() {
+        str.setStr("aaabbcdeef");
+        Assertions.assertEquals("abcdef", str.delRepeat());
+        str.setStr("111123444445555");
+        Assertions.assertEquals("12345", str.delRepeat());
+        str.setStr("FFFfffGGGg");
+        Assertions.assertEquals("FfGg", str.delRepeat());
+    }
+
+    //Task 19*
+    @Test
+    void romeTest() {
+        str.setStr("IX");
+        Assertions.assertEquals(9, str.rome());
+        str.setStr("MMMCMXCIX");
+        Assertions.assertEquals(3999, str.rome());
+        str.setStr("MCMLXXXIII");
+        Assertions.assertEquals(1983, str.rome());
+        str.setStr("MMCCXXII");
+        Assertions.assertEquals(2222, str.rome());
+        str.setStr("MMMCDXLIV");
+        Assertions.assertEquals(3444, str.rome());
+        str.setStr("MMXX");
+        Assertions.assertEquals(2020, str.rome());
+        str.setStr("CMXCIX");
+        Assertions.assertEquals(999, str.rome());
+        str.setStr("DCCCLXXXVIII");
+        Assertions.assertEquals(888, str.rome());
+        str.setStr("XXX");
+        Assertions.assertEquals(30, str.rome());
+    }
 }
