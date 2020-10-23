@@ -2,7 +2,7 @@ package com.rakovets.course.javabasics.practice.oop.inheritanceandpolymorphism.b
 
 public class Enemy implements Mortal{
 
-    protected int health = 100;
+    protected int health;
 
     public Enemy(int health) {
         this.health = health;
@@ -18,20 +18,23 @@ public class Enemy implements Mortal{
 
     public void takeDamage(int damage) {
         health -= damage;
+        if (health < 0) health = 0;
+        if (health > 100) health = 100;
     }
 
     public void attackHero(Hero hero) {
-        System.out.print(getType() + " attacks " + hero.getName() + "   ");
-        hero.takeDamage(10);
-        System.out.println(hero.getName() + " health = " + hero.getHealth());
+        if (isAlive()) {
+            int damage = 20;
+            System.out.print(Color.PURPLE + getClass().getSimpleName() + " attacks " + hero.getClass().getSimpleName() + " " + hero.getName() + " and takes damage " + damage + ".   " + Color.RESET);
+            hero.takeDamage(damage);
+            if (hero.isAlive()) {
+                System.out.println(Color.CYAN + hero.getName() + " health = " + hero.getHealth() + Color.RESET);
+            } else System.out.println(hero.getClass().getSimpleName() + " is dead");
+        }
     }
 
     @Override
     public boolean isAlive() {
         return (health > 0);
-    }
-
-    public String getType() {
-        return "Enemy";
     }
 }

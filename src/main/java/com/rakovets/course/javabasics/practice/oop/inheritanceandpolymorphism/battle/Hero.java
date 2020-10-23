@@ -16,6 +16,18 @@ public abstract class Hero implements Mortal{
 
     public void takeDamage(int damage) {
         health -= damage;
+        if (health < 0) health = 0;
+        if (health > 100) health = 100;
+    }
+
+    public void printDamage(int damage, Enemy enemy) {
+        if (isAlive()) {
+            System.out.print(Color.BLUE + getClass().getSimpleName() + " " + getName() + " attacks " + enemy.getClass().getSimpleName() + " and takes damage " + damage + ".   " + Color.RESET);
+            enemy.takeDamage(damage);
+            if (enemy.isAlive())
+                System.out.println(Color.CYAN + enemy.getClass().getSimpleName() + " health = " + enemy.getHealth() + Color.RESET);
+            else System.out.println(enemy.getClass().getSimpleName() + " is dead");
+        }
     }
 
     public int getHealth() {

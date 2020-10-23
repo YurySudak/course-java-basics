@@ -8,11 +8,11 @@ public class Warrior extends Hero {
 
     @Override
     public void attackEnemy(Enemy enemy) {
-        System.out.print(super.getName() + " attacks " + enemy.getType() + "   ");
-        enemy.takeDamage(50);
-        if (enemy.isAlive())
-            System.out.println(enemy.getType() + " health = " + enemy.getHealth());
-        else System.out.println(enemy.getType() + " is dead");
+        printDamage(50, enemy);
+    }
+
+    public void offendEnemy(Enemy enemy) {
+        System.out.println(Color.RED + "Warrior " + getName() + " offends " + enemy.getClass().getSimpleName() + ". " + enemy.getClass().getSimpleName() + " cries." + Color.RESET);
     }
 
 }
