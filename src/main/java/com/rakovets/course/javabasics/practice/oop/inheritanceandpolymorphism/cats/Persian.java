@@ -6,12 +6,14 @@ public class Persian extends Cat {
     }
 
     @Override
-    public void mew(Person person) {
-        person.takeHappiness(-15);
+    public String mew(Person person) {
+        person.changeHappiness(-15);
+        return "mew mew mew";
     }
 
     @Override
-    public void purr(Person person) {
-        person.takeHappiness(15);
+    public String purr(Person person) {
+        person.changeHappiness(20);
+        return "purr purr purr";
     }
 }

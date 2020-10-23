@@ -7,12 +7,14 @@ public class Cat {
         this.name = name;
     }
 
-    public void mew(Person person) {
-        person.takeHappiness(-5);
+    public String mew(Person person) {
+        person.changeHappiness(-5);
+        return "mew mew";
     }
 
-    public void purr(Person person) {
-        person.takeHappiness(5);
+    public String purr(Person person) {
+        person.changeHappiness(10);
+        return "purr purr";
     }
 
     public String getName() {
