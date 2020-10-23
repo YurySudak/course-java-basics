@@ -40,7 +40,7 @@ public class BattleTest {
         assertEquals(30, enemy.getHealth());
         Mage mage = new Mage("Merlin");
         mage.attackEnemy(enemy);
-        assertEquals(10, enemy.getHealth());
+        assertEquals(0, enemy.getHealth());
         Archer archer = new Archer("Robin");
         enemy.setHealth(100);
         archer.attackEnemy(enemy);
