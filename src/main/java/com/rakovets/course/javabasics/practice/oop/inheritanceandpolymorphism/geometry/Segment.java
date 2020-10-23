@@ -3,8 +3,10 @@ package com.rakovets.course.javabasics.practice.oop.inheritanceandpolymorphism.g
 public class Segment extends Polyline {
     public Segment(Point[] point) {
         super(point);
-        if (point.length > 2)
-            System.out.println("Error! This is not a segment!");
+    }
+
+    public boolean isSegment() {
+        return  (point.length <= 2);
     }
 
     @Override

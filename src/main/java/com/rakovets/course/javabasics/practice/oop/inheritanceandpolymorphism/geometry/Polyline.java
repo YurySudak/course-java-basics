@@ -2,7 +2,7 @@ package com.rakovets.course.javabasics.practice.oop.inheritanceandpolymorphism.g
 
 public class Polyline extends Figure implements Opened {
 
-    private Point[] point;
+    protected Point[] point;
 
     public Polyline(Point[] point) {
         this.point = point;

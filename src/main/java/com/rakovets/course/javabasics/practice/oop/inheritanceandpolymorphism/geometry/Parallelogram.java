@@ -4,9 +4,11 @@ public class Parallelogram extends Quadrangle {
 
     public Parallelogram(Point[] point) {
         super(point);
+    }
+
+    public boolean parallelSides() {
         double[] sides = getSides();
-        if (sides[0] != sides [2] || sides[1] != sides[3])
-            System.out.println("Error! This is not a parallelogram!");
+        return  (sides[0] == sides [2] || sides[1] == sides[3]);
     }
 
     @Override
