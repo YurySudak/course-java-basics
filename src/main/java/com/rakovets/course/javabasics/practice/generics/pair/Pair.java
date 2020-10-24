@@ -1,4 +1,4 @@
-package com.rakovets.course.javabasics.practice.generics;
+package com.rakovets.course.javabasics.practice.generics.pair;
 
 public class Pair<K, V> {
     private K key;

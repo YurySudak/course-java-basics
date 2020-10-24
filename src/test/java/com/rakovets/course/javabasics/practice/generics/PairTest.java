@@ -1,5 +1,7 @@
 package com.rakovets.course.javabasics.practice.generics;
 
+import com.rakovets.course.javabasics.practice.generics.pair.Pair;
+import com.rakovets.course.javabasics.practice.generics.pair.PairUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

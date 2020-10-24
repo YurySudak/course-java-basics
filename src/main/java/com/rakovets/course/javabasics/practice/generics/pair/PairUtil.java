@@ -1,4 +1,4 @@
-package com.rakovets.course.javabasics.practice.generics;
+package com.rakovets.course.javabasics.practice.generics.pair;
 
 public final class PairUtil {
 
