@@ -10,11 +10,8 @@ import java.util.List;
 
 public class FileAnalyzeUtilTest {
 
-     String sep = File.separator;
-     String pathStrings = "src" + sep + "main" + sep + "resources" + sep + "strings.txt";
-     String pathNumbers = "src" + sep + "main" + sep + "resources" + sep + "numbers.txt";
-
-
+    String sep = File.separator;
+    String pathStrings = "src" + sep + "main" + sep + "resources" + sep + "strings.txt";
 
     @Test
     void task2() {
@@ -34,9 +31,30 @@ public class FileAnalyzeUtilTest {
         assertEquals(list, FileAnalyzeUtil.listString(pathStrings, "lastChar"));
     }
 
+    String pathNumbers = "src" + sep + "main" + sep + "resources" + sep + "numbers.txt";
     @Test
     void task5() {
         List<String> list = Arrays.asList("1 2 3", "67 68 69");
         assertEquals(list, FileAnalyzeUtil.listString(pathNumbers, "numbers"));
+    }
+
+    @Test
+    void task6() {
+        List<String> list = Arrays.asList("a-3", "e-4", "o-3", "q-2", "u-3", "w-3");
+        assertEquals(list, FileAnalyzeUtil.listText(pathStrings, "lettersFrequency"));
+    }
+
+    String pathWords = "src" + sep + "main" + sep + "resources" + sep + "words.txt";
+    @Test
+    void task7() {
+        List<String> list = Arrays.asList("1-io", "1-oop", "3-git", "3-idea", "4-java");
+        assertEquals(list, FileAnalyzeUtil.listText(pathWords, "wordsFrequency"));
+    }
+
+    String pathSortNumbers = "src" + sep + "main" + sep + "resources" + sep + "sortNumbers.txt";
+    @Test
+    void task8() {
+        List<String> list = Arrays.asList("3", "6", "25", "40", "123");
+        assertEquals(list, FileAnalyzeUtil.listText(pathSortNumbers, "sortNumbers"));
     }
 }

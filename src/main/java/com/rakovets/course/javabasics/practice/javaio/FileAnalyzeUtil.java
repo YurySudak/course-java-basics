@@ -1,11 +1,7 @@
 package com.rakovets.course.javabasics.practice.javaio;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.io.*;
+import java.util.*;
 
 public class FileAnalyzeUtil {
 
@@ -76,5 +72,74 @@ public class FileAnalyzeUtil {
         }
         return result.trim();
     }
+
+    public static List<String> listText(String path, String condition) {
+        String string = "";
+        List<String> list = new ArrayList<>();
+        String text = "";
+        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+            while ((string = reader.readLine()) != null) {
+                text += string + " ";
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        switch (condition) {
+            case "lettersFrequency":
+                Map<Character, Integer> charMap = new TreeMap<>();
+                char ch = ' ';
+                text = text.replace(" ", "");
+                text = text.toLowerCase();
+                while (!text.isEmpty()) {
+                    ch = text.charAt(0);
+                    text = text.substring(1);
+                    if (charMap.containsKey(ch)) {
+                        charMap.put(ch, charMap.get(ch) + 1);
+                    }
+                    else charMap.put(ch, 1);
+                }
+                for (Map.Entry<Character, Integer> entry : charMap.entrySet()) {
+                    list.add(entry.getKey() + "-" + entry.getValue());
+                }
+            break;
+            case "wordsFrequency":
+                Map<String, Integer> stringMap = new TreeMap<>();
+                String[] wordsList = text.split(" ");
+                for (String word : wordsList) {
+                    if (stringMap.containsKey(word)) {
+                        stringMap.put(word, stringMap.get(word) + 1);
+                    }
+                    else stringMap.put(word, 1);
+                }
+                int i = 0;
+                for (Map.Entry<String, Integer> entry : stringMap.entrySet()) {
+                    wordsList[i++] = entry.getValue() + "-" + entry.getKey();
+                }
+                String[] result = Arrays.copyOf(wordsList, i);
+                Arrays.sort(result);
+                list = Arrays.asList(result);
+            break;
+            case "sortNumbers":
+                String[] strs = text.split(" ");
+                int[] nums = new int[strs.length];
+                for (int j = 0; j < strs.length; j++) {
+                    nums[j] = Integer.parseInt(strs[j]);
+                }
+                Arrays.sort(nums);
+                try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))) {
+                    for (int j = 0; j < strs.length; j++) {
+                        strs[j] = "" + nums[j];
+                        writer.write(strs[j] + System.lineSeparator());
+                    }
+                    writer.flush();
+                } catch (IOException e) {
+                    System.out.println(e.getMessage());
+                }
+                list.addAll(Arrays.asList(strs));
+            break;
+        }
+        return list;
+    }
+
 
 }
