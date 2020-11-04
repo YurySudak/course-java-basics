@@ -1,5 +1,7 @@
 package com.rakovets.course.javabasics.practice.jcf.map.garage;
 
+import java.util.Random;
+
 public abstract class Car {
 
     protected String brand;
@@ -7,6 +9,7 @@ public abstract class Car {
     protected String color;
     protected int yearManufacture;
     protected String registrationNumber;
+    protected int hushCode;
 
     public Car(String brand, String model, String color, int yearManufacture, String registrationNumber) {
         this.brand = brand;
@@ -14,6 +17,7 @@ public abstract class Car {
         this.color = color;
         this.yearManufacture = yearManufacture;
         this.registrationNumber = registrationNumber;
+        hushCode = new Random().nextInt();
     }
 
     public boolean equals(Car car) {
@@ -23,7 +27,7 @@ public abstract class Car {
 
     @Override
     public int hashCode() {
-        return yearManufacture;
+        return hushCode;
     }
 
     @Override

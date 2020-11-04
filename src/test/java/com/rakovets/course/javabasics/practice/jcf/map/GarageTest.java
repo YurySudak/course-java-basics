@@ -27,7 +27,6 @@ public class GarageTest {
         assertFalse(garage.isExist("Mercedes-Benz"));
         assertEquals("brand: Toyota, model: Corolla, color: black, yearManufacture: 2015, registrationNumber: 1020 AB-1", garage.getByRegistrationNumber("1020 AB-1").toString());
         assertEquals("Odyssey", garage.getByRegistrationNumber("1424 AB-5").getModel());
-        assertEquals(2017, garage.getByRegistrationNumber("1222 AB-3").hashCode());
         assertTrue(garage.getByRegistrationNumber("1424 AB-5").equals(garage.getByRegistrationNumber("1626 AB-7")));
 
     }
