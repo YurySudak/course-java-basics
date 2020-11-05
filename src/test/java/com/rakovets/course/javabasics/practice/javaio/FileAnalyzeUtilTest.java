@@ -54,7 +54,7 @@ public class FileAnalyzeUtilTest {
     String pathSortNumbers = "src" + sep + "main" + sep + "resources" + sep + "sortNumbers.txt";
     @Test
     void task8() {
-        List<String> list = Arrays.asList("3", "6", "25", "40", "123");
+        List<String> list = Arrays.asList("3", "5", "6", "8", "25", "33", "40", "123");
         assertEquals(list, FileAnalyzeUtil.listText(pathSortNumbers, "sortNumbers"));
     }
 }

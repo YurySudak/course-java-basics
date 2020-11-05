@@ -40,13 +40,10 @@ public class FileAnalyzeUtil {
     }
 
     public static String numbers(String string) {
-        List<String> list = Arrays.asList(string.split(" "));
+        List<String> list = Arrays.asList(string.split(" +"));
         List<Integer> numbersList = new ArrayList<>();
-        for (String str : list) {
-            if (!str.equals("")) {
-                numbersList.add(Integer.parseInt(str));
-            }
-        }
+        for (String str : list)
+            numbersList.add(Integer.parseInt(str));
         List<List<Integer>> listOfNumbersList = new ArrayList<>();
         int fromIndex = 0;
         if (list.size() > 1) {
@@ -81,7 +78,9 @@ public class FileAnalyzeUtil {
         String text = "";
         try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
             while ((string = reader.readLine()) != null) {
-                text += string + " ";
+                if (!string.equals("")) {
+                    text += string + " ";
+                }
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -106,7 +105,7 @@ public class FileAnalyzeUtil {
             break;
             case "wordsFrequency":
                 Map<String, Integer> stringMap = new TreeMap<>();
-                String[] wordsList = text.split(" ");
+                String[] wordsList = text.split(" +");
                 for (String word : wordsList) {
                     if (stringMap.containsKey(word)) {
                         stringMap.put(word, stringMap.get(word) + 1);
@@ -122,22 +121,24 @@ public class FileAnalyzeUtil {
                 list = Arrays.asList(result);
             break;
             case "sortNumbers":
-                String[] strs = text.split(" ");
-                int[] nums = new int[strs.length];
-                for (int j = 0; j < strs.length; j++) {
-                    nums[j] = Integer.parseInt(strs[j]);
+                String[] stringNumbers = text.split(" +");
+                int[] nums = new int[stringNumbers.length];
+                for (int j = 0; j < stringNumbers.length; j++) {
+                    if (!stringNumbers[j].equals("")) {
+                        nums[j] = Integer.parseInt(stringNumbers[j]);
+                    }
                 }
                 Arrays.sort(nums);
-                try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))) {
-                    for (int j = 0; j < strs.length; j++) {
-                        strs[j] = "" + nums[j];
-                        writer.write(strs[j] + System.lineSeparator());
+                try (FileWriter writer = new FileWriter(path)) {
+                    for (int j = 0; j < stringNumbers.length; j++) {
+                        stringNumbers[j] = "" + nums[j];
+                        writer.write(stringNumbers[j] + System.lineSeparator());
                     }
                     writer.flush();
                 } catch (IOException e) {
                     System.out.println(e.getMessage());
                 }
-                list.addAll(Arrays.asList(strs));
+                list.addAll(Arrays.asList(stringNumbers));
             break;
         }
         return list;
