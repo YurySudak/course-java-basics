@@ -29,7 +29,7 @@ public class Form {
         return email;
     }
 
-    public void setEmail(String email) throws NotEmailException {
+    public void setEmail(String email) {
         if (!email.matches(".+@.+\\..+")) throw new NotEmailException("This is not a e-mail: " + email);
         this.email = email;
     }
