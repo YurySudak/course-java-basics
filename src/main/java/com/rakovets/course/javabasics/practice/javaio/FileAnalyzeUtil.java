@@ -43,13 +43,15 @@ public class FileAnalyzeUtil {
         List<String> list = Arrays.asList(string.split(" "));
         List<Integer> numbersList = new ArrayList<>();
         for (String str : list) {
-            numbersList.add(Integer.parseInt(str));
+            if (!str.equals("")) {
+                numbersList.add(Integer.parseInt(str));
+            }
         }
         List<List<Integer>> listOfNumbersList = new ArrayList<>();
         int fromIndex = 0;
         if (list.size() > 1) {
-            for (int i = 1; i < list.size(); i++) {
-                if (numbersList.get(i - 1) != numbersList.get(i) - 1) {
+            for (int i = 1; i < numbersList.size(); i++) {
+                if (numbersList.get(i - 1) >= numbersList.get(i)) {
                     listOfNumbersList.add(numbersList.subList(fromIndex, i));
                     fromIndex = i;
                 }
