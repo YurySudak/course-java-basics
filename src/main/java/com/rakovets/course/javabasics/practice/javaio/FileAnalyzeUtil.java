@@ -1,6 +1,9 @@
 package com.rakovets.course.javabasics.practice.javaio;
 
 import java.io.*;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.ParseException;
 import java.util.*;
 
 public class FileAnalyzeUtil {
@@ -144,5 +147,45 @@ public class FileAnalyzeUtil {
         return list;
     }
 
+    public static double getProgress(String path) {
+        String string = "";
+        double sum = 0;
+        int num = 0;
+        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+            while ((string = reader.readLine()) != null) {
+                String[] data = string.split(",");
+                for (String element : data) {
+                    try {
+                        sum += Double.parseDouble(element);
+                        num++;
+                    } catch (NumberFormatException e) {
 
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        return new BigDecimal(sum/num).setScale(2, RoundingMode.HALF_UP).doubleValue();
+    }
+
+    public static boolean changeModifier(String path, String oldModifier, String newModifier) {
+        String string = "";
+        String text = "";
+        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+            while ((string = reader.readLine()) != null) {
+                text += string + "\n";
+            }
+        } catch (IOException e) {
+            return false;
+        }
+        text = text.replaceAll(oldModifier + "(?! class)", newModifier);
+        try (FileWriter writer = new FileWriter(path)) {
+            writer.write(text);
+            writer.flush();
+        } catch (IOException e) {
+            return false;
+        }
+        return true;
+    }
 }
