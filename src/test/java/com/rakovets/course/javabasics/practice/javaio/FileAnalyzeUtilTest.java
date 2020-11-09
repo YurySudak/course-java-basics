@@ -34,7 +34,7 @@ public class FileAnalyzeUtilTest {
     String pathNumbers = "src" + sep + "main" + sep + "resources" + sep + "numbers.txt";
     @Test
     void task5() {
-        List<String> list = Arrays.asList("1 2 3", "67 68 69");
+        List<String> list = Arrays.asList("1 2 3", "67 68 69", "1 4 8 56", "3");
         assertEquals(list, FileAnalyzeUtil.listString(pathNumbers, "numbers"));
     }
 
@@ -54,7 +54,20 @@ public class FileAnalyzeUtilTest {
     String pathSortNumbers = "src" + sep + "main" + sep + "resources" + sep + "sortNumbers.txt";
     @Test
     void task8() {
-        List<String> list = Arrays.asList("3", "6", "25", "40", "123");
+        List<String> list = Arrays.asList("3", "5", "6", "8", "25", "33", "40", "123");
         assertEquals(list, FileAnalyzeUtil.listText(pathSortNumbers, "sortNumbers"));
+    }
+
+    String pathStudents = "src" + sep + "main" + sep + "resources" + sep + "students.txt";
+    @Test
+    void task9() {
+        assertEquals(7.93, FileAnalyzeUtil.getProgress(pathStudents));
+    }
+
+    String pathJava = "src" + sep + "main" + sep + "resources" + sep + "Test.java";
+    @Test
+    void task10() {
+        //assertTrue(FileAnalyzeUtil.changeModifier(pathJava, "public", "private"));
+        assertTrue(FileAnalyzeUtil.changeModifier(pathJava, "private", "public"));
     }
 }

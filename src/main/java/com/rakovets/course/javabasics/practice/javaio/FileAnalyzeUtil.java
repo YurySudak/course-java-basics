@@ -1,6 +1,9 @@
 package com.rakovets.course.javabasics.practice.javaio;
 
 import java.io.*;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.ParseException;
 import java.util.*;
 
 public class FileAnalyzeUtil {
@@ -40,16 +43,15 @@ public class FileAnalyzeUtil {
     }
 
     public static String numbers(String string) {
-        List<String> list = Arrays.asList(string.split(" "));
+        List<String> list = Arrays.asList(string.split(" +"));
         List<Integer> numbersList = new ArrayList<>();
-        for (String str : list) {
+        for (String str : list)
             numbersList.add(Integer.parseInt(str));
-        }
         List<List<Integer>> listOfNumbersList = new ArrayList<>();
         int fromIndex = 0;
         if (list.size() > 1) {
-            for (int i = 1; i < list.size(); i++) {
-                if (numbersList.get(i - 1) != numbersList.get(i) - 1) {
+            for (int i = 1; i < numbersList.size(); i++) {
+                if (numbersList.get(i - 1) >= numbersList.get(i)) {
                     listOfNumbersList.add(numbersList.subList(fromIndex, i));
                     fromIndex = i;
                 }
@@ -79,7 +81,9 @@ public class FileAnalyzeUtil {
         String text = "";
         try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
             while ((string = reader.readLine()) != null) {
-                text += string + " ";
+                if (!string.equals("")) {
+                    text += string + " ";
+                }
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
@@ -104,7 +108,7 @@ public class FileAnalyzeUtil {
             break;
             case "wordsFrequency":
                 Map<String, Integer> stringMap = new TreeMap<>();
-                String[] wordsList = text.split(" ");
+                String[] wordsList = text.split(" +");
                 for (String word : wordsList) {
                     if (stringMap.containsKey(word)) {
                         stringMap.put(word, stringMap.get(word) + 1);
@@ -120,26 +124,68 @@ public class FileAnalyzeUtil {
                 list = Arrays.asList(result);
             break;
             case "sortNumbers":
-                String[] strs = text.split(" ");
-                int[] nums = new int[strs.length];
-                for (int j = 0; j < strs.length; j++) {
-                    nums[j] = Integer.parseInt(strs[j]);
+                String[] stringNumbers = text.split(" +");
+                int[] nums = new int[stringNumbers.length];
+                for (int j = 0; j < stringNumbers.length; j++) {
+                    if (!stringNumbers[j].equals("")) {
+                        nums[j] = Integer.parseInt(stringNumbers[j]);
+                    }
                 }
                 Arrays.sort(nums);
-                try (BufferedWriter writer = new BufferedWriter(new FileWriter(path))) {
-                    for (int j = 0; j < strs.length; j++) {
-                        strs[j] = "" + nums[j];
-                        writer.write(strs[j] + System.lineSeparator());
+                try (FileWriter writer = new FileWriter(path)) {
+                    for (int j = 0; j < stringNumbers.length; j++) {
+                        stringNumbers[j] = "" + nums[j];
+                        writer.write(stringNumbers[j] + System.lineSeparator());
                     }
                     writer.flush();
                 } catch (IOException e) {
                     System.out.println(e.getMessage());
                 }
-                list.addAll(Arrays.asList(strs));
+                list.addAll(Arrays.asList(stringNumbers));
             break;
         }
         return list;
     }
 
+    public static double getProgress(String path) {
+        String string = "";
+        double sum = 0;
+        int num = 0;
+        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+            while ((string = reader.readLine()) != null) {
+                String[] data = string.split(",");
+                for (String element : data) {
+                    try {
+                        sum += Double.parseDouble(element);
+                        num++;
+                    } catch (NumberFormatException e) {
 
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+        return new BigDecimal(sum/num).setScale(2, RoundingMode.HALF_UP).doubleValue();
+    }
+
+    public static boolean changeModifier(String path, String oldModifier, String newModifier) {
+        String string = "";
+        String text = "";
+        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
+            while ((string = reader.readLine()) != null) {
+                text += string + "\n";
+            }
+        } catch (IOException e) {
+            return false;
+        }
+        text = text.replaceAll(oldModifier + "(?! class)", newModifier);
+        try (FileWriter writer = new FileWriter(path)) {
+            writer.write(text);
+            writer.flush();
+        } catch (IOException e) {
+            return false;
+        }
+        return true;
+    }
 }
