@@ -8,45 +8,53 @@ import java.util.List;
 public class ParallelCalculator extends Thread {
     private int[] array;
     private int max;
-    private static List<ArrayMax> result = new ArrayList<>();
+    private static List<ArrayMax> result = Collections.synchronizedList(new ArrayList<>());
 
     public ParallelCalculator(int[] array) {
         this.array = array;
     }
 
-    public static List<ArrayMax> getMax(List<int[]> list){
+    public static List<ArrayMax> calcMax(List<int[]> list){
         int defaultNumberOfThreads = 2;
-        return getMax(list, defaultNumberOfThreads);
+        return calcMax(list, defaultNumberOfThreads);
     }
 
-    public static List<ArrayMax> getMax(List<int[]> list, int numberOfThreads){
+    public static List<ArrayMax> calcMax(List<int[]> list, int numberOfThreads){
         ParallelCalculator[] calculators = new ParallelCalculator[numberOfThreads];
         int threads = 0;
-        for(int[] arr : list) {
-            calculators[threads] = new ParallelCalculator(arr);
+        for (int i = 0; i < list.size(); i++) {
+            if (i >= numberOfThreads) {
+                try {
+                    calculators[threads].join();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            calculators[threads] = new ParallelCalculator(list.get(i));
             calculators[threads].start();
             threads++;
             if (threads == numberOfThreads) {
                 threads = 0;
             }
         }
-        for(Thread calculator : calculators) {
+        for (ParallelCalculator calculator : calculators) {
             try {
                 calculator.join();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        return result;
+
+        ArrayList<ArrayMax> res = new ArrayList<>();
+        res.addAll(result);
+        return res;
     }
 
     public void run() {
-        synchronized (result) {
-            int[] newArray = array.clone();
-            Arrays.sort(newArray);
-            max = newArray[newArray.length - 1];
-            result.add(new ArrayMax(array, max));
-        }
+        int[] newArray = array.clone();
+        Arrays.sort(newArray);
+        max = newArray[newArray.length - 1];
+        result.add(new ArrayMax(array, max));
     }
 
 }
