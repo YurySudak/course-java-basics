@@ -179,7 +179,9 @@ public class FileAnalyzeUtil {
         } catch (IOException e) {
             return false;
         }
-        text = text.replaceAll(oldModifier + "(?! class)", newModifier);
+        String className = new File(path).getName().replace(".java", "");
+        String regEx = "(?! " + className + "| class)";
+        text = text.replaceAll(oldModifier + regEx, newModifier);
         try (FileWriter writer = new FileWriter(path)) {
             writer.write(text);
             writer.flush();

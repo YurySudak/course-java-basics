@@ -1,6 +1,11 @@
-public class Test {
+public class Pets {
     public Cat cat;
     public Dog dog;
+
+    public Pets(Cat cat, Dog dog) {
+        this.cat = cat;
+        this.dog = dog;
+    }
 
     public void gow() {
         System.out.println("gow");

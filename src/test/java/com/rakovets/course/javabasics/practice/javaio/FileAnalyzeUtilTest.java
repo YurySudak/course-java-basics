@@ -64,7 +64,7 @@ public class FileAnalyzeUtilTest {
         assertEquals(7.93, FileAnalyzeUtil.getProgress(pathStudents));
     }
 
-    String pathJava = "src" + sep + "main" + sep + "resources" + sep + "Test.java";
+    String pathJava = "src" + sep + "main" + sep + "resources" + sep + "Pets.java";
     @Test
     void task10() {
         //assertTrue(FileAnalyzeUtil.changeModifier(pathJava, "public", "private"));
