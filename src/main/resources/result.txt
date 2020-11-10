@@ -1,0 +1,6 @@
+badword1
+keyword
+test1
+badword2
+test2
+keyword
