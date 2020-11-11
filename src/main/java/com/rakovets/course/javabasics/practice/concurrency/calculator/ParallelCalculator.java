@@ -1,4 +1,4 @@
-package com.rakovets.course.javabasics.practice.concurrency;
+package com.rakovets.course.javabasics.practice.concurrency.calculator;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,10 +44,7 @@ public class ParallelCalculator extends Thread {
                 e.printStackTrace();
             }
         }
-
-        ArrayList<ArrayMax> res = new ArrayList<>();
-        res.addAll(result);
-        return res;
+        return new ArrayList<>(result);
     }
 
     public void run() {

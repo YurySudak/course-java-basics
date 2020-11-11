@@ -16,29 +16,27 @@ public class Finder extends Thread {
         String resultPath = "src" + sep + "main" + sep + "resources" + sep + "result.txt";
         File resultFile = new File(resultPath);
         File dir = new File(path);
-        StringBuffer data = new StringBuffer();
+        StringBuilder data = new StringBuilder();
         StringBuffer result = new StringBuffer();
-        String line = "";
+        String line;
         if (dir.exists()) {
             String[] files = dir.list();
-            for (String fileName : files) {
-                try {
-                    File file = new File(path + sep + fileName);
-                    if (file.isFile()) {
-                        BufferedReader reader = new BufferedReader(new FileReader(file));
-                        while ((line = reader.readLine()) != null)
-                            data.append(line + "\n");
-                        reader.close();
-                        if (data.indexOf(word) > -1) {
-                            result.append(data);
-                        }
-                        data.delete(0, data.length());
+            try {
+                assert files != null;
+                for (String fileName : files) {
+                File file = new File(path + sep + fileName);
+                if (file.isFile()) {
+                    BufferedReader reader = new BufferedReader(new FileReader(file));
+                    while ((line = reader.readLine()) != null)
+                        data.append(line).append("\n");
+                    data.append("\n");
+                    reader.close();
+                    if (data.indexOf(word) > -1) {
+                        result.append(data);
                     }
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    data.delete(0, data.length());
                 }
             }
-            try {
                 if (!resultFile.exists())
                     resultFile.createNewFile();
                 FileWriter writer = new FileWriter(resultFile);
@@ -48,6 +46,9 @@ public class Finder extends Thread {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else System.out.println("Directory not found!");
+        } else {
+            System.out.println("Directory not found!");
+            interrupt();
+        }
     }
 }

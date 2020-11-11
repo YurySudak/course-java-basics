@@ -1,4 +1,4 @@
-package com.rakovets.course.javabasics.practice.concurrency;
+package com.rakovets.course.javabasics.practice.concurrency.calculator;
 
 import java.util.ArrayList;
 import java.util.List;
