@@ -4,9 +4,9 @@ package com.rakovets.course.javabasics.practice.concurrency.calculator;
 public class Task2 {
     public static void main(String[] args) {
         int maxArrayLength = 15;
-        ParallelCalculatorTest test = new ParallelCalculatorTest(maxArrayLength);
+        CalculatorManager manager = new CalculatorManager(maxArrayLength);
         int numberOfThreads = 5;
-        test.printList(ParallelCalculator.calcMax(test.getList(), numberOfThreads));
+        manager.printList(ParallelCalculator.calcMax(manager.getList(), numberOfThreads));
     }
 }
 

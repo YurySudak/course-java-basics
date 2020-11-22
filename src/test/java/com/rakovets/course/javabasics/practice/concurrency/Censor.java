@@ -17,8 +17,8 @@ public class Censor {
         try {
             finder.join();
             if (!finder.isInterrupted()) {
-                statictic("Searching... ");
-                statictic("Cutting... ");
+                statistic("Searching... ");
+                statistic("Cutting... ");
                 cutter.join();
                 System.out.println("Job is done! Checkout result.txt");
             }
@@ -27,7 +27,7 @@ public class Censor {
         }
     }
 
-    private static void statictic(String process) throws InterruptedException {
+    private static void statistic(String process) throws InterruptedException {
         for (int i = 0; i <= 100; i++) {
             System.out.print("\r" + process + i + "%");
             Thread.sleep(20);

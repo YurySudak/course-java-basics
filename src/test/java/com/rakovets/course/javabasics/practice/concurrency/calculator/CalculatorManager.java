@@ -1,17 +1,19 @@
 package com.rakovets.course.javabasics.practice.concurrency.calculator;
 
+import com.rakovets.course.javabasics.practice.concurrency.calculator.model.ArrayMax;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class ParallelCalculatorTest {
+public class CalculatorManager {
 
     private List<int[]> list = new ArrayList<>();
     private int maxArrayLength;
     private int maxNumber = 300;
     private int listSize = 10;
 
-    public ParallelCalculatorTest(int maxArrayLength) {
+    public CalculatorManager(int maxArrayLength) {
         this.maxArrayLength = maxArrayLength;
         for(int i = 0; i < listSize; i++) {
             int arrayLength = new Random().nextInt(maxArrayLength) + 1;

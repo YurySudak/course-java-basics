@@ -2,36 +2,25 @@ package com.rakovets.course.javabasics.practice.concurrency;
 
 import java.util.Scanner;
 
-public class MasterWorker extends Thread {
-    private int num = 0;
-
-    public void run() {
+public class Master {
+    public static void main(String[] args) {
+        Worker worker = new Worker();
+        worker.start();
         Scanner input = new Scanner(System.in);
+        int num;
         while (true) {
             try {
                 try {
                     num = Integer.parseInt(input.nextLine());
                     if (num == -1) break;
-                    sleep(num * 1000);
-                    System.out.println("I slept " + num + " seconds");
-                    num = 0;
+                    worker.getQueue().offer(num);
                 } catch (NumberFormatException e) {
                     throw new InputMismatchException("Data is incorrect!");
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
                 }
             } catch (InputMismatchException e) {
                 System.out.println(e.getMessage());
             }
-
         }
-    }
-
-    public int getNum() {
-        return num;
-    }
-
-    public void setNum(int num) {
-        this.num = num;
+        worker.interrupt();
     }
 }

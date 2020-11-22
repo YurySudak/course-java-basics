@@ -1,4 +1,4 @@
-package com.rakovets.course.javabasics.practice.concurrency.calculator;
+package com.rakovets.course.javabasics.practice.concurrency.calculator.model;
 
 public class ArrayMax {
     private int[] array;

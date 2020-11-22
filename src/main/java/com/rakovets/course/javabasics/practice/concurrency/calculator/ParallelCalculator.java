@@ -1,42 +1,31 @@
 package com.rakovets.course.javabasics.practice.concurrency.calculator;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import com.rakovets.course.javabasics.practice.concurrency.calculator.model.ArrayMax;
+
+import java.util.*;
 
 public class ParallelCalculator extends Thread {
-    private int[] array;
-    private int max;
-    private static List<ArrayMax> result = Collections.synchronizedList(new ArrayList<>());
-
-    public ParallelCalculator(int[] array) {
-        this.array = array;
-    }
+    private static Queue<int[]> data;
+    private static List<ArrayMax> result;
 
     public static List<ArrayMax> calcMax(List<int[]> list){
-        int defaultNumberOfThreads = 2;
+        int defaultNumberOfThreads = 1;
         return calcMax(list, defaultNumberOfThreads);
     }
 
     public static List<ArrayMax> calcMax(List<int[]> list, int numberOfThreads){
+        data = new ArrayDeque<>(list);
+        result = new ArrayList<>();
         ParallelCalculator[] calculators = new ParallelCalculator[numberOfThreads];
-        int threads = 0;
-        for (int i = 0; i < list.size(); i++) {
-            if (i >= numberOfThreads) {
-                try {
-                    calculators[threads].join();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-            calculators[threads] = new ParallelCalculator(list.get(i));
-            calculators[threads].start();
-            threads++;
-            if (threads == numberOfThreads) {
-                threads = 0;
-            }
+        for (int i = 0; i < numberOfThreads; i++) {
+            calculators[i] = new ParallelCalculator();
+            calculators[i].start();
         }
+        joinAll(calculators);
+        return new ArrayList<>(result);
+    }
+
+    private static void joinAll(ParallelCalculator[] calculators) {
         for (ParallelCalculator calculator : calculators) {
             try {
                 calculator.join();
@@ -44,14 +33,21 @@ public class ParallelCalculator extends Thread {
                 e.printStackTrace();
             }
         }
-        return new ArrayList<>(result);
     }
 
     public void run() {
-        int[] newArray = array.clone();
-        Arrays.sort(newArray);
-        max = newArray[newArray.length - 1];
-        result.add(new ArrayMax(array, max));
+        while (true) {
+            int[] array = null;
+            synchronized (data) {
+                if (!data.isEmpty())
+                    array = data.poll();
+                else break;
+            }
+              int max = Arrays.stream(array).max().getAsInt();
+              ArrayMax arrayMax = new ArrayMax(array, max);
+            synchronized (result) {
+                result.add(arrayMax);
+            }
+        }
     }
-
 }
