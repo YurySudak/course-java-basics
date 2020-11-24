@@ -7,16 +7,7 @@ import com.rakovets.course.javabasics.practice.concurrency.threadsynchronization
 public class NumberStoreDemo {
     public static void main(String[] args) {
         Store store = new Store();
-        ProducerThread producerThread = new ProducerThread(store);
-        ConsumerThread consumerThread = new ConsumerThread(store);
-        producerThread.start();
-        consumerThread.start();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        producerThread.interrupt();
-        consumerThread.interrupt();
+        new Thread(new ProducerThread(store)).start();
+        new Thread(new ConsumerThread(store)).start();
     }
 }
